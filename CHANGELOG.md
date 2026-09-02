@@ -1,1 +1,1 @@
-- Fixed non-ResultSlot slots that are backed by ResultContainer not being ignored
+- Updated to Minecraft 26.3
