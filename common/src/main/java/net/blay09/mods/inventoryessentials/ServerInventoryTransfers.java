@@ -1,6 +1,7 @@
 package net.blay09.mods.inventoryessentials;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerInput;
 import net.minecraft.world.inventory.Slot;
@@ -27,7 +28,7 @@ public class ServerInventoryTransfers {
                 slot.set(restStack);
             } else {
                 if (!player.addItem(restStack)) {
-                    player.drop(restStack, false);
+                    player.drop(restStack, false, Prediction.SERVER_ONLY);
                 }
             }
         }

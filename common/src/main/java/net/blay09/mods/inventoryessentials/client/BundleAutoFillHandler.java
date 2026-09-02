@@ -117,7 +117,7 @@ final class BundleAutoFillHandler {
                 continue;
             }
 
-            final boolean containsMatchingItem = bundleContents.itemCopyStream().anyMatch(bundleItem -> ItemStack.isSameItemSameComponents(bundleItem, sourceStack));
+            final boolean containsMatchingItem = bundleContents.itemCopies().anyMatch(bundleItem -> ItemStack.isSameItemSameComponents(bundleItem, sourceStack));
             if (containsMatchingItem) {
                 return slot;
             }

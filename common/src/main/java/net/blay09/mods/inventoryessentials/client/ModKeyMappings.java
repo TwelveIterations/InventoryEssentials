@@ -41,13 +41,13 @@ public class ModKeyMappings {
                 .build();
 
         keyBulkTransferSingle = Kuma.createKeyMapping(Identifier.fromNamespaceAndPath(InventoryEssentials.MOD_ID, "bulk_transfer_single"))
-                .withDefault(InputBinding.mouse(InputConstants.MOUSE_BUTTON_RIGHT, KeyModifiers.ofCustom(InputConstants.Type.KEYSYM.getOrCreate(InputConstants.KEY_SPACE))))
+                .withDefault(InputBinding.mouse(InputConstants.MOUSE_BUTTON_RIGHT, KeyModifiers.ofCustom(InputConstants.Type.KEYBOARD.getOrCreate(InputConstants.KEY_SPACE))))
                 .handleScreenInput(event -> handleSlotInput(event, () -> InventoryEssentialsConfig.getActive().enableBulkTransferSingle,
                         (screen, slot) -> InventoryEssentialsClient.getInventoryControls(screen).bulkTransferSingle(screen, slot)))
                 .build();
 
         keyBulkTransferAll = Kuma.createKeyMapping(Identifier.fromNamespaceAndPath(InventoryEssentials.MOD_ID, "bulk_transfer_all"))
-                .withDefault(InputBinding.mouse(InputConstants.MOUSE_BUTTON_LEFT, KeyModifiers.ofCustom(InputConstants.Type.KEYSYM.getOrCreate(InputConstants.KEY_SPACE))))
+                .withDefault(InputBinding.mouse(InputConstants.MOUSE_BUTTON_LEFT, KeyModifiers.ofCustom(InputConstants.Type.KEYBOARD.getOrCreate(InputConstants.KEY_SPACE))))
                 .handleScreenInput(event -> handleSlotInput(event, () -> InventoryEssentialsConfig.getActive().enableBulkTransferAll,
                         (screen, slot) -> InventoryEssentialsClient.getInventoryControls(screen).bulkTransferAll(screen, slot)))
                 .build();
