@@ -1,5 +1,6 @@
 package net.blay09.mods.inventoryessentials.client;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.blay09.mods.inventoryessentials.InventoryEssentialsConfig;
 import net.blay09.mods.inventoryessentials.InventoryOperations;
 import net.blay09.mods.inventoryessentials.InventoryUtils;
@@ -466,7 +467,8 @@ public class ClientOnlyInventoryControls implements InventoryControls {
         Player player = Minecraft.getInstance().player;
         MultiPlayerGameMode gameMode = Minecraft.getInstance().gameMode;
         if (player != null && gameMode != null && (menu.isValidSlotIndex(slotIndex) || slotIndex == -999)) {
-            gameMode.handleContainerInput(menu.containerId, slotIndex, mouseButton, containerInput, player);
+            final var containerButton = mouseButton == InputConstants.MOUSE_BUTTON_LEFT ? 0 : 1;
+            gameMode.handleContainerInput(menu.containerId, slotIndex, containerButton, containerInput, player);
         }
     }
 
