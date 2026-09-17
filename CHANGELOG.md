@@ -1,1 +1,1 @@
-- Updated to Minecraft 26.3
+- Fixed wrong clicks being simulated, resulting in sorting not working
