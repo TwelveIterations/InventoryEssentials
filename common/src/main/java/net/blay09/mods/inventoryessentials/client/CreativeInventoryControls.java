@@ -16,22 +16,22 @@ public class CreativeInventoryControls extends ClientOnlyInventoryControls {
     }
 
     @Override
-    protected void slotClick(AbstractContainerMenu menu, Slot slot, int mouseButton, ContainerInput containerInput) {
+    protected void slotClick(AbstractContainerMenu menu, Slot slot, int containerButton, ContainerInput containerInput) {
         if (slot instanceof SlotWrapperAccessor accessor) {
             final var player = Minecraft.getInstance().player;
             if (player != null) {
-                slotClick(player.inventoryMenu, accessor.getTarget().index, mouseButton, containerInput);
+                slotClick(player.inventoryMenu, accessor.getTarget().index, containerButton, containerInput);
             }
         } else {
-            slotClick(menu, slot.index, mouseButton, containerInput);
+            slotClick(menu, slot.index, containerButton, containerInput);
         }
     }
 
     @Override
-    protected void slotClick(AbstractContainerMenu menu, int slotIndex, int mouseButton, ContainerInput containerInput) {
+    protected void slotClick(AbstractContainerMenu menu, int slotIndex, int containerButton, ContainerInput containerInput) {
         final var player = Minecraft.getInstance().player;
         if (player != null) {
-            menu.clicked(slotIndex, mouseButton, containerInput, player);
+            menu.clicked(slotIndex, containerButton, containerInput, player);
             player.inventoryMenu.broadcastChanges();
         }
     }

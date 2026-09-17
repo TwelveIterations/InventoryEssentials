@@ -451,7 +451,7 @@ public class ClientOnlyInventoryControls implements InventoryControls {
 
     @Override
     public void dragClick(AbstractContainerScreen<?> screen, Slot hoveredSlot, int mouseButton) {
-        slotClick(screen.getMenu(), hoveredSlot, mouseButton, ContainerInput.PICKUP);
+        slotClick(screen.getMenu(), hoveredSlot, getContainerClickButton(mouseButton), ContainerInput.PICKUP);
     }
 
     @Override
@@ -459,17 +459,24 @@ public class ClientOnlyInventoryControls implements InventoryControls {
         return ClientInventorySorting.sort(screen, baseSlot, InventoryEssentialsConfig.getActive().inventorySorting, this::slotClick);
     }
 
-    protected void slotClick(AbstractContainerMenu menu, Slot slot, int mouseButton, ContainerInput containerInput) {
-        slotClick(menu, slot.index, mouseButton, containerInput);
+    protected void slotClick(AbstractContainerMenu menu, Slot slot, int containerButton, ContainerInput containerInput) {
+        slotClick(menu, slot.index, containerButton, containerInput);
     }
 
-    protected void slotClick(AbstractContainerMenu menu, int slotIndex, int mouseButton, ContainerInput containerInput) {
+    protected void slotClick(AbstractContainerMenu menu, int slotIndex, int containerButton, ContainerInput containerInput) {
         Player player = Minecraft.getInstance().player;
         MultiPlayerGameMode gameMode = Minecraft.getInstance().gameMode;
         if (player != null && gameMode != null && (menu.isValidSlotIndex(slotIndex) || slotIndex == -999)) {
-            final var containerButton = mouseButton == InputConstants.MOUSE_BUTTON_LEFT ? 0 : 1;
             gameMode.handleContainerInput(menu.containerId, slotIndex, containerButton, containerInput, player);
         }
+    }
+
+    private static int getContainerClickButton(int mouseButton) {
+        return switch (mouseButton) {
+            case InputConstants.MOUSE_BUTTON_LEFT -> 0;
+            case InputConstants.MOUSE_BUTTON_RIGHT -> 1;
+            default -> mouseButton;
+        };
     }
 
     @Override

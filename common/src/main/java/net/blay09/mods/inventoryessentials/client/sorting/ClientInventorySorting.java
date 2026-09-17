@@ -33,7 +33,7 @@ public class ClientInventorySorting {
 
     @FunctionalInterface
     public interface SlotClicker {
-        void click(AbstractContainerMenu menu, Slot slot, int mouseButton, ContainerInput ContainerInput);
+        void click(AbstractContainerMenu menu, Slot slot, int containerButton, ContainerInput containerInput);
     }
 
     public static boolean sort(AbstractContainerScreen<?> screen, Slot baseSlot, InventorySorting sortingMode, SlotClicker clicker) {

@@ -25,7 +25,7 @@ public class InventoryOperations {
 
     @FunctionalInterface
     public interface SlotClickHandler {
-        void click(AbstractContainerMenu menu, Slot slot, int mouseButton, ContainerInput ContainerInput);
+        void click(AbstractContainerMenu menu, Slot slot, int containerButton, ContainerInput containerInput);
     }
 
     private final SlotClickHandler slotClickHandler;
