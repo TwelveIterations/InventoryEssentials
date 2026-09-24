@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(ClientPacketListener.class)
 public class ClientPacketListenerMixin {
 
-    @Inject(method = "handleContainerSetSlot", at = @At("HEAD"))
+    @Inject(method = "handleContainerSetSlot", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/protocol/PacketUtils;ensureRunningOnSameThread(Lnet/minecraft/network/protocol/Packet;Lnet/minecraft/network/PacketListener;Lnet/minecraft/util/thread/BlockableEventLoop;)V", shift = At.Shift.AFTER))
     private void beforeContainerSetSlot(ClientboundContainerSetSlotPacket packet, CallbackInfo callbackInfo) {
         InventoryEssentialsClient.beforeContainerSetSlotPacket(packet);
     }
