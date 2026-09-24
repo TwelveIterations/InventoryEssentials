@@ -18,7 +18,6 @@ import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.inventory.Slot;
 import org.jspecify.annotations.Nullable;
 
@@ -53,22 +52,20 @@ public class InventoryEssentialsClient {
         bundleAutoFillHandler.onTakeItemEntityPacket(Minecraft.getInstance(), packet);
     }
 
-    public static void beforeUseItemOn(LocalPlayer player, InteractionHand hand) {
-        stackRefillHandler.beforeUseItemOn(Minecraft.getInstance(), player, hand);
-    }
-
-    public static void afterUseItemOn(LocalPlayer player, InteractionHand hand, InteractionResult result) {
-        stackRefillHandler.afterUseItemOn(Minecraft.getInstance(), player, hand, result);
-    }
-
     public static void beforeContainerSetSlotPacket(ClientboundContainerSetSlotPacket packet) {
         final var client = Minecraft.getInstance();
         toolRefillHandler.beforeContainerSetSlot(client, packet);
+        stackRefillHandler.beforeContainerSetSlot(client, packet);
+    }
+
+    public static void beforeUseItemOn(LocalPlayer player, InteractionHand hand) {
+        stackRefillHandler.beforeUseItemOn(Minecraft.getInstance(), player, hand);
     }
 
     public static void afterContainerSetSlotPacket(ClientboundContainerSetSlotPacket packet) {
         final var client = Minecraft.getInstance();
         toolRefillHandler.afterContainerSetSlot(client, packet);
+        stackRefillHandler.afterContainerSetSlot(client, packet);
         bundleAutoFillHandler.onContainerSetSlotPacket(client, packet);
     }
 
