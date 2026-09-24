@@ -18,9 +18,4 @@ public class MultiPlayerGameModeMixin {
     private void beforeUseItemOn(LocalPlayer player, InteractionHand hand, BlockHitResult blockHit, CallbackInfoReturnable<InteractionResult> callbackInfo) {
         InventoryEssentialsClient.beforeUseItemOn(player, hand);
     }
-
-    @Inject(method = "useItemOn", at = @At("RETURN"))
-    private void afterUseItemOn(LocalPlayer player, InteractionHand hand, BlockHitResult blockHit, CallbackInfoReturnable<InteractionResult> callbackInfo) {
-        InventoryEssentialsClient.afterUseItemOn(player, hand, callbackInfo.getReturnValue());
-    }
 }
