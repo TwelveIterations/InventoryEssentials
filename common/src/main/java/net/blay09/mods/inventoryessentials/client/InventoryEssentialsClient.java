@@ -15,7 +15,6 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.inventory.Slot;
 
 public class InventoryEssentialsClient {
@@ -42,20 +41,20 @@ public class InventoryEssentialsClient {
         Balm.getEvents().onEvent(ScreenMouseEvent.Release.Pre.class, InventoryEssentialsClient::onMouseRelease);
     }
 
+    public static void beforeContainerSetSlotPacket(ClientboundContainerSetSlotPacket packet) {
+        final var client = Minecraft.getInstance();
+        toolRefillHandler.beforeContainerSetSlot(client, packet);
+        stackRefillHandler.beforeContainerSetSlot(client, packet);
+    }
+
     public static void beforeUseItemOn(LocalPlayer player, InteractionHand hand) {
         stackRefillHandler.beforeUseItemOn(Minecraft.getInstance(), player, hand);
     }
 
-    public static void afterUseItemOn(LocalPlayer player, InteractionHand hand, InteractionResult result) {
-        stackRefillHandler.afterUseItemOn(Minecraft.getInstance(), player, hand, result);
-    }
-
-    public static void beforeContainerSetSlotPacket(ClientboundContainerSetSlotPacket packet) {
-        toolRefillHandler.beforeContainerSetSlot(Minecraft.getInstance(), packet);
-    }
-
     public static void afterContainerSetSlotPacket(ClientboundContainerSetSlotPacket packet) {
-        toolRefillHandler.afterContainerSetSlot(Minecraft.getInstance(), packet);
+        final var client = Minecraft.getInstance();
+        toolRefillHandler.afterContainerSetSlot(client, packet);
+        stackRefillHandler.afterContainerSetSlot(client, packet);
     }
 
     public static InventoryControls getInventoryControls(Screen screen) {
