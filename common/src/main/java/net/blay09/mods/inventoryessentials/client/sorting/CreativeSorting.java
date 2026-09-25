@@ -1,5 +1,6 @@
 package net.blay09.mods.inventoryessentials.client.sorting;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
 
@@ -46,6 +47,15 @@ public final class CreativeSorting {
         synchronized (CreativeSorting.class) {
             if (!creativeRanks.isEmpty()) {
                 return creativeRanks;
+            }
+
+            final var minecraft = Minecraft.getInstance();
+            final var player = minecraft.player;
+            final var level = minecraft.level;
+            if (player != null && level != null) {
+                final var showOperatorItems = player.canUseGameMasterBlocks()
+                        && minecraft.options.operatorItemsTab().get();
+                CreativeModeTabs.tryRebuildTabContents(level.enabledFeatures(), showOperatorItems, level.registryAccess());
             }
 
             final var computedRanks = new HashMap<ItemStackKey, Integer>();
