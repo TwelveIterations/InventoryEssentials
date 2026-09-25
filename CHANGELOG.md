@@ -1,1 +1,1 @@
-- Fixed non-ResultSlot slots that are backed by ResultContainer not being ignored
+- Fixed potential race condition in bundle autofill, tool refill and stack refill, causing them to not work as expected occasionally
