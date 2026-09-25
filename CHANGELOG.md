@@ -1,1 +1,1 @@
-- Fixed wrong clicks being simulated, resulting in sorting not working
+- Fixed potential race condition in bundle autofill, tool refill and stack refill, causing them to not work as expected occasionally
