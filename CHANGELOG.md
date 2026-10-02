@@ -1,1 +1,1 @@
-- Fixed potential race condition in bundle autofill, tool refill and stack refill, causing them to not work as expected occasionally
+- Fixed creative tab sorting not working unless a creative mode screen was opened at least once
