@@ -1,1 +1,1 @@
-- Fixed creative tab sorting not working unless a creative mode screen was opened at least once
+- Fixed sorting not working on newer NeoForge versions
