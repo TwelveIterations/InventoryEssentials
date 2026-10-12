@@ -8,7 +8,6 @@ import net.minecraft.world.inventory.Slot;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.neoforge.items.SlotItemHandler;
 import net.neoforged.neoforge.transfer.item.ResourceHandlerSlot;
 
 @Mod(InventoryEssentials.MOD_ID)
@@ -18,18 +17,12 @@ public class NeoForgeInventoryEssentials {
         PlatformBindings.INSTANCE = new PlatformBindings() {
             @Override
             public boolean isSameInventory(Slot targetSlot, Slot slot) {
-                if (targetSlot instanceof SlotItemHandler && slot instanceof SlotItemHandler) {
-                    return ((SlotItemHandler) targetSlot).getItemHandler() == ((SlotItemHandler) slot).getItemHandler();
-                }
-
                 return slot.isSameInventory(targetSlot);
             }
 
             @Override
-            @SuppressWarnings("removal")
             public boolean isSortableSlot(Slot slot) {
                 return super.isSortableSlot(slot)
-                        || slot instanceof SlotItemHandler
                         || slot instanceof ResourceHandlerSlot;
             }
         };
