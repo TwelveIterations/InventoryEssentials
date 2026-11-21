@@ -1,5 +1,5 @@
 {
-  "key.categories.inventoryessentials": "Inventory Essentials 物品欄助手",
+  "key.category.inventoryessentials.default": "Inventory Essentials 物品欄助手",
   "key.inventoryessentials.single_transfer": "轉移單個物品",
   "key.inventoryessentials.bulk_transfer": "轉移所有同類物品",
   "key.inventoryessentials.bulk_transfer_all": "轉移所有物品",
