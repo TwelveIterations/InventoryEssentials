@@ -14,6 +14,6 @@ public class ModItemTagProvider extends FabricTagsProvider.ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider lookup) {
-        valueLookupBuilder(InventoryEssentialsTags.BUNDLES);
+        tag(InventoryEssentialsTags.BUNDLES);
     }
 }
