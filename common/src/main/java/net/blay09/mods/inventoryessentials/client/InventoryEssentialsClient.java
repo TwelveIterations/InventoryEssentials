@@ -6,6 +6,7 @@ import net.blay09.mods.balm.client.platform.event.callback.ClientLifecycleCallba
 import net.blay09.mods.balm.client.platform.event.callback.ScreenCallback;
 import net.blay09.mods.inventoryessentials.InventoryEssentials;
 import net.blay09.mods.inventoryessentials.InventoryEssentialsConfig;
+import net.blay09.mods.inventoryessentials.InventoryUtils;
 import net.blay09.mods.inventoryessentials.InventoryEssentialsIgnores;
 import net.blay09.mods.inventoryessentials.mixin.AbstractContainerScreenAccessor;
 import net.blay09.mods.inventoryessentials.mixin.CreativeModeInventoryScreenAccessor;
@@ -16,7 +17,6 @@ import net.minecraft.client.input.MouseButtonEvent;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.inventory.Slot;
 import org.jspecify.annotations.Nullable;
@@ -132,7 +132,7 @@ public class InventoryEssentialsClient {
             // If dragging mouse button while holding a bundle, perform drag clicks
             if (InventoryEssentialsConfig.getActive().enableBundleDrag) {
                 final var carriedStack = containerScreen.getMenu().getCarried();
-                if (carriedStack.is(ItemTags.BUNDLES)) {
+                if (InventoryUtils.isBundle(carriedStack)) {
                     if (hoverSlot != lastDragHoverSlot) {
                         if ((button == InputConstants.MOUSE_BUTTON_LEFT && hoverSlot.hasItem()) || (button == InputConstants.MOUSE_BUTTON_RIGHT && !hoverSlot.hasItem())) {
                             final var controls = getInventoryControls(containerScreen);

@@ -1,11 +1,11 @@
 package net.blay09.mods.inventoryessentials.client;
 
 import net.blay09.mods.inventoryessentials.InventoryEssentialsConfig;
+import net.blay09.mods.inventoryessentials.InventoryUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.network.protocol.game.ClientboundTakeItemEntityPacket;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -63,7 +63,7 @@ final class BundleAutoFillHandler {
 
         final var currentStack = sourceSlot.getItem();
         if (currentStack.isEmpty()
-                || currentStack.is(ItemTags.BUNDLES)
+                || InventoryUtils.isBundle(currentStack)
                 || !ItemStack.isSameItemSameComponents(currentStack, pendingPickedUpStack)) {
             return;
         }
@@ -108,7 +108,7 @@ final class BundleAutoFillHandler {
             }
 
             final var bundleStack = slot.getItem();
-            if (!bundleStack.is(ItemTags.BUNDLES)) {
+            if (!InventoryUtils.isBundle(bundleStack)) {
                 continue;
             }
 

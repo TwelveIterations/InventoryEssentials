@@ -19,6 +19,9 @@
 
   "environment": "*",
   "entrypoints": {
+    "fabric-datagen": [
+      "net.blay09.mods.inventoryessentials.fabric.datagen.ModDataGenerator"
+    ],
     "main": [
       "net.blay09.mods.inventoryessentials.fabric.FabricInventoryEssentials"
     ],

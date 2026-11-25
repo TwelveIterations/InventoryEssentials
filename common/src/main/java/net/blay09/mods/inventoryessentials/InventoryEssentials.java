@@ -9,6 +9,7 @@ import net.blay09.mods.inventoryessentials.data.ModFileJsonCompatLoader;
 import net.blay09.mods.inventoryessentials.data.ModFileJsonExtensionLoader;
 import net.blay09.mods.inventoryessentials.network.HelloMessage;
 import net.blay09.mods.inventoryessentials.network.ModNetworking;
+import net.minecraft.resources.Identifier;
 
 public class InventoryEssentials {
 
@@ -29,4 +30,7 @@ public class InventoryEssentials {
         });
     }
 
+    public static Identifier id(String path) {
+        return Identifier.fromNamespaceAndPath(MOD_ID, path);
+    }
 }
