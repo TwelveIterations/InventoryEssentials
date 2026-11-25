@@ -6,7 +6,6 @@ import net.blay09.mods.inventoryessentials.InventoryUtils;
 import net.blay09.mods.inventoryessentials.PlatformBindings;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerInput;
@@ -136,7 +135,7 @@ public class ClientInventorySorting {
             }
 
             // We can't swap with a bundle normally because clicking it would insert the item - try another way
-            if (firstStack.is(ItemTags.BUNDLES) || secondStack.is(ItemTags.BUNDLES)) {
+            if (InventoryUtils.isBundle(firstStack) || InventoryUtils.isBundle(secondStack)) {
                 Slot emptyBufferSlot = null;
                 for (final var candidate : slots) {
                     if (!candidate.hasItem()) {
@@ -187,7 +186,7 @@ public class ClientInventorySorting {
                 final var otherStack = otherSlot.getItem();
 
                 // We ignore bundles because clicking them would insert the item into the bundle
-                if (thisStack.is(ItemTags.BUNDLES) || otherStack.is(ItemTags.BUNDLES)) {
+                if (InventoryUtils.isBundle(thisStack) || InventoryUtils.isBundle(otherStack)) {
                     continue;
                 }
 

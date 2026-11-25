@@ -1,6 +1,7 @@
 package net.blay09.mods.inventoryessentials;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -14,6 +15,10 @@ import java.util.Map;
 import java.util.Objects;
 
 public class InventoryUtils {
+
+    public static boolean isBundle(ItemStack stack) {
+        return stack.is(ItemTags.BUNDLES) || stack.is(InventoryEssentialsTags.BUNDLES);
+    }
 
     public static boolean isSameInventory(Slot targetSlot, Slot slot) {
         return isSameInventory(targetSlot, slot, false);
